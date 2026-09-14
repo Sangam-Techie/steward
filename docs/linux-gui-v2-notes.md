@@ -1,0 +1,1 @@
+# Linux is kept, scoped to shell/process/filesystem/API/browser/vision automation. Linux desktop-GUI automation — AT-SPI-tree-based action grounding, native-Wayland input synthesis, compositor-specific window management on GNOME or Hyprland — is explicitly deferred to a v2 phase, documented in full in §3.20 rather than deleted.
