@@ -1,0 +1,7 @@
+"""Declarative SQLAlchemy base for control-plane models."""
+
+from sqlalchemy.orm import DeclarativeBase
+
+
+class Base(DeclarativeBase):
+    """Shared declarative base for all ORM mapped classes."""

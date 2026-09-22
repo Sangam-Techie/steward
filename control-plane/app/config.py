@@ -15,9 +15,10 @@ class Settings(BaseSettings):
         environment: Deployment environment name (defaults to ``development``).
     """
 
-    database_url : str
-    environment : str = "development"
+    database_url: str
+    environment: str = "development"
+    jwt_secret: str
+    model_config = SettingsConfigDict(env_file=".env")
 
-    model_config =  SettingsConfigDict(env_file=".env")
 
 settings = Settings()
