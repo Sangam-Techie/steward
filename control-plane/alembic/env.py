@@ -16,7 +16,11 @@ if config.config_file_name is not None:
 
 # --- DATABASE URL DRIVER SWAP CONFIGURATION ---
 # Swap +asyncpg (used by app) to +psycopg because Alembic needs a synchronous driver
-db_url = str(settings.database_url).replace("+asyncpg", "+psycopg")
+db_url = (
+    str(settings.database_url)
+    .replace("+asyncpg", "+psycopg")
+    .replace("ssl=require", "sslmode=require")
+)  # psycopg requires sslmode instead of ssl
 config.set_main_option("sqlalchemy.url", db_url)
 
 # add your model's MetaData object here
