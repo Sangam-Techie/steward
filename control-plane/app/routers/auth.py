@@ -1,4 +1,5 @@
 import uuid
+from typing import Annotated
 
 from fastapi import APIRouter, Depends
 from sqlalchemy import select
@@ -12,16 +13,14 @@ from ..security import create_device_token, hash_token
 router = APIRouter(tags=["auth"])
 
 
-async def get_session():
-    return await get_db()
-
-
-session_dependency = Depends(get_session)
+# Reusable type alias (optional, but clean across multiple routes)
+DBSession = Annotated[AsyncSession, Depends(get_db)]
 
 
 @router.post("/api/v1/auth/device/register", response_model=DeviceRegisterResponse)
 async def register_device(
-    payload: DeviceRegisterRequest, session: AsyncSession = session_dependency
+    payload: DeviceRegisterRequest,
+    session: DBSession,  # <-- No function call in default value!)
 ):
     result = await session.execute(
         select(User).where(User.email == "sangamaryal1111@gmail.com")
